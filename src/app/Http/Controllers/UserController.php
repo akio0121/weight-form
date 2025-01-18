@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 
+
 class UserController extends Controller
 {
     //会員登録画面(step1)を表示する
@@ -14,11 +15,15 @@ class UserController extends Controller
         return view('auth.register');
     }
 
-    //会員登録画面(step1)画面で、アカウント情報を登録後、会員登録画面(step2)へ遷移する
+    //会員登録画面(step1)画面で氏名、メールアドレス、パスワードを入力後、会員登録画面(step2)へ遷移する
     public function create(UserRequest $request)
     {
-        $form = $request->all();
-        User::create($form);
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
         return redirect('register/step2');
     }
 

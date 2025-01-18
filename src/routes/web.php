@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Weight_logsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,14 +16,24 @@ use App\Http\Controllers\UserController;
 //会員登録画面を表示するために、UserControllerのindexメソッドを実行する
 Route::get('/register/step1', [UserController::class, 'step1']);
 
-//会員登録画面でアカウント情報を登録する
+//会員登録画面(step1)で氏名、メールアドレス、パスワードを登録する
 Route::post('/register/step1', [UserController::class, 'create']);
+
+//会員登録画面(step2)で体重を登録し、管理画面へ遷移する
+Route::post('/register/step2', [Weight_logsController::class, 'create2']);
 
 //ログイン画面を表示するために、UserControllerのloginメソッドを実行する
 Route::get('/login', [UserController::class, 'login']);
 
 //step1でアカウント情報を登録後、step2へ遷移
 Route::get('register/step2', [UserController::class, 'step2']);
+
+//ログイン画面でログイン後、管理画面へ遷移
+Route::get('/weight_logs', [Weight_logsController::class, 'admin']);
+
+//管理画面から目標設定画面へ遷移
+Route::get('/weight_logs/goal_setting', [Weight_logsController::class, 'goal_setting']);
+
 
 Route::get('/', function () {
     return view('welcome');
