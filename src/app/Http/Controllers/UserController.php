@@ -18,6 +18,7 @@ class UserController extends Controller
     //会員登録画面(step1)画面で氏名、メールアドレス、パスワードを入力後、会員登録画面(step2)へ遷移する
     public function create(UserRequest $request)
     {
+
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');

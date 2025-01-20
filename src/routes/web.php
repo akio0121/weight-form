@@ -19,9 +19,6 @@ Route::get('/register/step1', [UserController::class, 'step1']);
 //会員登録画面(step1)で氏名、メールアドレス、パスワードを登録する
 Route::post('/register/step1', [UserController::class, 'create']);
 
-//会員登録画面(step2)で体重を登録し、管理画面へ遷移する
-Route::post('/register/step2', [Weight_logsController::class, 'create2']);
-
 //ログイン画面を表示するために、UserControllerのloginメソッドを実行する
 Route::get('/login', [UserController::class, 'login']);
 
@@ -31,8 +28,17 @@ Route::get('register/step2', [UserController::class, 'step2']);
 //ログイン画面でログイン後、管理画面へ遷移
 Route::get('/weight_logs', [Weight_logsController::class, 'admin']);
 
-//管理画面から目標設定画面へ遷移
+//管理画面から目標体重設定ボタンを押下して、目標設定画面へ遷移
 Route::get('/weight_logs/goal_setting', [Weight_logsController::class, 'goal_setting']);
+
+//管理画面からデータ追加ボタンを押下して、体重登録画面へ遷移
+Route::get('weight_logs/create', [Weight_logsController::class, 'add']);
+
+
+//会員登録画面(step2)で体重を登録し、管理画面へ遷移する
+
+Route::post('/register/step2', [Weight_logsController::class, 'create2']);
+
 
 
 Route::get('/', function () {
