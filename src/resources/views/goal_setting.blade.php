@@ -11,11 +11,11 @@
 <body>
     <div class="goal-form">
         <h1 class="goal-form__heading content__heading">PiGLy</h1>
-        <button class="btn btn-primary" onclick="location.href='/weight_logs/goal_setting'">目標体重設定</button>
+        <button class="btn btn-primary" onclick="location.href='/weight_logs'">目標体重設定</button>
         <button class="btn btn-primary" onclick="location.href='/login'">ログアウト</button>
 
         <div class="goal-form__inner">
-            <form class="goal-form__form" action="/login" method="post">
+            <form class="goal-form__form" action="/weight_logs/goal_setting" method="post">
                 @csrf
                 <div class="goal-form__group">
                     <label class="goal-form__label" for="target_weight">目標体重設定</label>
@@ -26,7 +26,7 @@
                         @enderror
                     </p>
                 </div>
-                <button class="btn btn-primary" onclick="location.href='/admin'">戻る</button>
+                <button class="btn btn-primary" type="button" onclick="location.href='/weight_logs'">戻る</button>
                 <input class="goal-form__btn btn" type="submit" value="更新">
             </form>
         </div>

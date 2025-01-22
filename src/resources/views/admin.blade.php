@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <p>目標体重: {{ $weight_target->target_weight }} kg</p>
     <button class="btn btn-primary" onclick="location.href='/weight_logs/goal_setting'">目標体重設定</button>
     <button class="btn btn-primary" onclick="location.href='/login'">ログアウト</button>
 
@@ -25,7 +26,7 @@
             <td>{{$weight_log->weight}}kg</td>
             <td>{{$weight_log->calories}}cal</td>
             <td>{{$weight_log->exercise_time}}</td>
-            <td><a href="/weight_logs/{weightLogId}/update">
+            <td><a href="/weight_logs/{{$weight_log->id}}/update">
                     <img src="{{ asset('storage/edit-icon.png') }}" alt="" style="width: 24px; height: 24px;"></a>
             </td>
         </tr>
@@ -62,7 +63,7 @@
                         </p>
                     </div>
                     <div class="log-form__group">
-                        <label class="log-form__label" for="calories">接種カロリー</label>
+                        <label class="log-form__label" for="calories">摂取カロリー</label>
                         <input class="log-form__input" type="integer" name="calories" id="calories">cal
                         <p class="log-form__error-message">
                             @error('name')

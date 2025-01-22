@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTableSeeder::class);
         $this->call(Weight_logsTableSeeder::class);
+        $this->call(Weight_targetTableSeeder::class);
     }
 }

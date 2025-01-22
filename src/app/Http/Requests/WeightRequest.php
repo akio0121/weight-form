@@ -26,7 +26,7 @@ class WeightRequest extends FormRequest
         return [
             //バリデーションのルール
             'target_weight' => ['required', 'numeric', 'regex:/^\d{1,4}(\.\d{1})?$/'],
-            'weight' => ['required', 'numeric', 'regex:/^\d{1,4}(\.\d{1})?$/'],
+            'weight' => ['sometimes', 'required', 'numeric', 'regex:/^\d{1,4}(\.\d{1})?$/'],
         ];
     }
 

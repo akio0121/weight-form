@@ -26,20 +26,24 @@ Route::get('/login', [UserController::class, 'login']);
 //step1でアカウント情報を登録後、step2へ遷移
 Route::get('register/step2', [UserController::class, 'step2']);
 
+//会員登録画面(step2)で体重を登録し、管理画面へ遷移する
+Route::post('/register/step2', [Weight_logsController::class, 'create2']);
+
 //ログイン画面でログイン後、管理画面へ遷移
 Route::get('/weight_logs', [Weight_logsController::class, 'admin']);
 
 //管理画面から目標体重設定ボタンを押下して、目標設定画面へ遷移
 Route::get('/weight_logs/goal_setting', [Weight_logsController::class, 'goal_setting']);
 
+//目標体重設定画面から、目標体重を更新する
+Route::post('/weight_logs/goal_setting', [Weight_logsController::class, 'goal_setting_update']);
+
 //管理画面からデータ追加ボタンを押下して、体重登録画面へ遷移
 Route::get('weight_logs/create', [Weight_logsController::class, 'add']);
 
-//会員登録画面(step2)で体重を登録し、管理画面へ遷移する
-Route::post('/register/step2', [Weight_logsController::class, 'create2']);
-
 //管理画面から鉛筆マークを押下して、体重更新画面へ遷移
 Route::get('/weight_logs/{weightLogId}/update', [Weight_logsController::class, 'update']);
+
 
 
 Route::get('/', function () {

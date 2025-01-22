@@ -10,7 +10,7 @@ class Weight_log extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'date', 'weight', 'calories', 'exercise_time', 'exercise_content'];
-
+    
     //リレーションを設定
     public function user()
     {
