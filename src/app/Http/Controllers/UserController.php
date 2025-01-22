@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class UserController extends Controller
@@ -24,7 +27,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
         $user->save();
-
+        Auth::login($user);
         return redirect('register/step2');
     }
 
@@ -34,7 +37,7 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    //step2画面へ遷移する
+    //step2画面を表示する
     public function step2()
     {
         return view('step2');

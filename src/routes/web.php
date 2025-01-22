@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Weight_logsController;
+use App\Http\Middleware\StoreUserId;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,11 +35,11 @@ Route::get('/weight_logs/goal_setting', [Weight_logsController::class, 'goal_set
 //管理画面からデータ追加ボタンを押下して、体重登録画面へ遷移
 Route::get('weight_logs/create', [Weight_logsController::class, 'add']);
 
-
 //会員登録画面(step2)で体重を登録し、管理画面へ遷移する
-
 Route::post('/register/step2', [Weight_logsController::class, 'create2']);
 
+//管理画面から鉛筆マークを押下して、体重更新画面へ遷移
+Route::get('/weight_logs/{weightLogId}/update', [Weight_logsController::class, 'update']);
 
 
 Route::get('/', function () {

@@ -25,7 +25,7 @@
             <td>{{$weight_log->weight}}kg</td>
             <td>{{$weight_log->calories}}cal</td>
             <td>{{$weight_log->exercise_time}}</td>
-            <td><a href="/weight_logs/{:weightLogId}/update">
+            <td><a href="/weight_logs/{weightLogId}/update">
                     <img src="{{ asset('storage/edit-icon.png') }}" alt="" style="width: 24px; height: 24px;"></a>
             </td>
         </tr>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="log-form__group">
                         <label class="log-form__label" for="weight">体重</label>
-                        <input class="log-form__input" type="integer" name="weight" id="weight">
+                        <input class="log-form__input" type="integer" name="weight" id="weight">kg
                         <p class="log-form__error-message">
                             @error('name')
                             {{ $message }}
@@ -63,7 +63,7 @@
                     </div>
                     <div class="log-form__group">
                         <label class="log-form__label" for="calories">接種カロリー</label>
-                        <input class="log-form__input" type="integer" name="calories" id="calories">
+                        <input class="log-form__input" type="integer" name="calories" id="calories">cal
                         <p class="log-form__error-message">
                             @error('name')
                             {{ $message }}
@@ -88,6 +88,8 @@
                             @enderror
                         </p>
                     </div>
+                    <a href="/weight_logs">戻る</a>
+                    <input class="log-form__btn btn" type="submit" value="更新">
                 </form>
             </div>
         </div>
