@@ -26,7 +26,7 @@
             <td>{{$weight_log->weight}}kg</td>
             <td>{{$weight_log->calories}}cal</td>
             <td>{{$weight_log->exercise_time}}</td>
-            <td><a href="/weight_logs/{{$weight_log->id}}/update">
+            <td><a href="/weight_logs/{{$weight_log->id}}">
                     <img src="{{ asset('storage/edit-icon.png') }}" alt="" style="width: 24px; height: 24px;"></a>
             </td>
         </tr>

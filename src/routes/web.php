@@ -41,8 +41,10 @@ Route::post('/weight_logs/goal_setting', [Weight_logsController::class, 'goal_se
 //管理画面からデータ追加ボタンを押下して、体重登録画面へ遷移
 Route::get('weight_logs/create', [Weight_logsController::class, 'add']);
 
-//管理画面から鉛筆マークを押下して、体重更新画面へ遷移
-Route::get('/weight_logs/{weightLogId}/update', [Weight_logsController::class, 'update']);
+//管理画面から鉛筆マークを押下して、体重詳細画面へ遷移
+Route::get('/weight_logs/{weightLogId}', [Weight_logsController::class, 'detail'])
+    ->where('weightLogId', '[0-9]+')
+    ->name('weight_logs.detail');
 
 
 

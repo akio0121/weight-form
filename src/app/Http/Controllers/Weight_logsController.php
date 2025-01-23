@@ -74,12 +74,9 @@ class Weight_logsController extends Controller
         return redirect('/weight_logs');
     }
 
-
-
-
-    //体重更新画面を表示する
-    public function update()
+    //体重詳細画面を表示する
+    public function detail(Weight_log $weightLogId)
     {
-
+        return view('detail', ['weightLog' => $weightLogId]);
     }
 }
