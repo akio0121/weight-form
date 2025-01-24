@@ -116,7 +116,7 @@ class Weight_logsController extends Controller
     }
 
     //体重詳細画面のゴミ箱ボタンを押下して、weight_logsテーブルのデータを削除する
-    public function delete(LogRequest $request, $weightLogId)
+    public function delete(Request $request, $weightLogId)
     {
         $weightLog = Weight_log::findOrFail($weightLogId);
         dd($request->all());
