@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Weight_target extends Model
+class WeightTarget extends Model
 {
     use HasFactory;
     protected $table = 'weight_target';
@@ -16,7 +16,4 @@ class Weight_target extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-
-    
 }

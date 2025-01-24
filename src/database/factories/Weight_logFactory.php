@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Weight_log;
+use App\Models\WeightLog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class Weight_logFactory extends Factory
+class WeightLogFactory extends Factory
 {
     /**
      * Define the model's default state.

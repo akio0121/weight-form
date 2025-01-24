@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Weight_logsController;
+use App\Http\Controllers\WeightLogsController;
 use App\Http\Middleware\StoreUserId;
 /*
 |--------------------------------------------------------------------------
@@ -27,34 +27,37 @@ Route::get('/login', [UserController::class, 'login']);
 Route::get('register/step2', [UserController::class, 'step2']);
 
 //会員登録画面(step2)で体重を登録し、管理画面へ遷移
-Route::post('/register/step2', [Weight_logsController::class, 'create2']);
+Route::post('/register/step2', [WeightLogsController::class, 'create2']);
 
 //ログイン画面でログイン後、管理画面へ遷移
-Route::get('/weight_logs', [Weight_logsController::class, 'admin']);
+Route::get('/weight_logs', [WeightLogsController::class, 'admin']);
 
 //管理画面のデータ追加ボタンを押下して、モーダルウィンドウを表示
-Route::post('/weight_logs', [Weight_logsController::class, 'store']);
+Route::post('/weight_logs', [WeightLogsController::class, 'store']);
 
 //管理画面から目標体重設定ボタンを押下して、目標設定画面へ遷移
-Route::get('/weight_logs/goal_setting', [Weight_logsController::class, 'goal_setting']);
+Route::get('/weight_logs/goal_setting', [WeightLogsController::class, 'goal_setting']);
 
 //目標体重設定画面から、目標体重を更新
-Route::post('/weight_logs/goal_setting', [Weight_logsController::class, 'goal_setting_update']);
+Route::post('/weight_logs/goal_setting', [WeightLogsController::class, 'goal_setting_update']);
 
 //管理画面から鉛筆マークを押下して、体重詳細画面へ遷移
-Route::get('/weight_logs/{weightLogId}', [Weight_logsController::class, 'detail'])
+Route::get('/weight_logs/{weightLogId}', [WeightLogsController::class, 'detail'])
     ->where('weightLogId', '[0-9]+')
     ->name('weight_logs.detail');
 
 //体重詳細画面で更新ボタンを押下して、weight_logsテーブルのデータを更新
-Route::post('/weight_logs/{weightLogId}/update', [Weight_logsController::class, 'update'])
+Route::post('/weight_logs/{weightLogId}/update', [WeightLogsController::class, 'update'])
     ->where('weightLogId', '[0-9]+')
     ->name('weight_logs.update');
 
 //体重詳細画面でゴミ箱ボタンを押下して、weight_logsテーブルのデータを削除
-Route::post('/weight_logs/{weightLogId}/delete', [Weight_logsController::class, 'delete'])
+Route::post('/weight_logs/{weightLogId}/delete', [WeightLogsController::class, 'delete'])
     ->where('weightLogId', '[0-9]+')
     ->name('weight_logs.delete');
+
+//管理画面から検索ボタンを押下して、選択した期間内のデータを検索
+Route::get('/weight_logs/search', [WeightLogsController::class, 'search']);
 
 
 

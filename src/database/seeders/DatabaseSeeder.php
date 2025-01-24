@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
-        $this->call(Weight_logsTableSeeder::class);
-        $this->call(Weight_targetTableSeeder::class);
+        $this->call(WeightLogsTableSeeder::class);
+        $this->call(WeightTargetTableSeeder::class);
     }
 }

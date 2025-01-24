@@ -11,7 +11,7 @@
 <body>
     <div class="goal-form">
         <h1 class="goal-form__heading content__heading">PiGLy</h1>
-        <button class="btn btn-primary" onclick="location.href='/weight_logs'">目標体重設定</button>
+        <button class="btn btn-primary" onclick="location.href='/weight_logs/goal_setting'">目標体重設定</button>
         <button class="btn btn-primary" onclick="location.href='/login'">ログアウト</button>
 
         <div class="goal-form__inner">

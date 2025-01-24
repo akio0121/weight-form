@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Weight_log;
-use App\Models\Weight_target;
+use App\Models\WeightLog;
+use App\Models\WeightTarget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -12,7 +12,7 @@ use App\Http\Requests\LogRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class Weight_logsController extends Controller
+class WeightLogsController extends Controller
 {
     //管理画面(admin)を表示
     public function admin()
@@ -20,9 +20,9 @@ class Weight_logsController extends Controller
         //管理画面に体重一覧を表示
         $user = Auth::user();
         Session::put('user_id', $user->id);
-        $weight_logs = Weight_log::where('user_id', $user->id)->Paginate(8);
+        $weight_logs = WeightLog::where('user_id', $user->id)->Paginate(8);
         //管理画面上部に目標体重を表示
-        $weight_target = Weight_target::where('user_id', $user->id)->first();
+        $weight_target = WeightTarget::where('user_id', $user->id)->first();
         return view('admin', compact('weight_target', 'weight_logs'));
     }
 
@@ -36,7 +36,7 @@ class Weight_logsController extends Controller
     public function goal_setting_update(WeightRequest $request)
     {
         $user = Auth::user();
-        $weight_target = Weight_target::where('user_id', $user->id)->first();
+        $weight_target = WeightTarget::where('user_id', $user->id)->first();
         if ($weight_target) {
             // レコードが見つかった場合、target_weight を更新
             $weight_target->target_weight = $request->input('target_weight');
@@ -45,7 +45,7 @@ class Weight_logsController extends Controller
             return redirect('/weight_logs');
         } else {
             // レコードが存在しない場合、新規作成
-            Weight_target::create([
+            WeightTarget::create([
                 'user_id' => $user->id,
                 'target_weight' => $request->input('target_weight'),
             ]);
@@ -59,11 +59,11 @@ class Weight_logsController extends Controller
     public function create2(WeightRequest $request)
     {
         $user = Auth::user();
-        $weight_target = new Weight_target();
+        $weight_target = new WeightTarget();
         $weight_target->user_id = $user->id;
         $weight_target->target_weight = $request->input('target_weight');
         $weight_target->save();
-        $weight_log = new Weight_Log();
+        $weight_log = new WeightLog();
         $weight_log->user_id = $user->id;
         $weight_log->date = Carbon::now();
         $weight_log->weight = $request->input('weight');
@@ -72,7 +72,7 @@ class Weight_logsController extends Controller
     }
 
     //体重詳細画面を表示
-    public function detail(Weight_log $weightLogId)
+    public function detail(WeightLog $weightLogId)
     {
         return view('detail', ['weightLog' => $weightLogId]);
     }
@@ -81,7 +81,7 @@ class Weight_logsController extends Controller
     public function store(LogRequest $request)
     {
         $user = Auth::user();
-        $weight_log = new Weight_log();
+        $weight_log = new WeightLog();
         $weight_log->user_id = $user->id;
         $weight_log->date = $request->input('date');
         $weight_log->weight = $request->input('weight');
@@ -93,19 +93,9 @@ class Weight_logsController extends Controller
     }
 
     //体重詳細画面の更新ボタンを押下して、weight_logsテーブルのデータを更新する
-    //public function update(LogRequest $request, $weightLogId)
-    public function update(Request $request, $weightLogId)
-
+    public function update(LogRequest $request, $weightLogId)
     {
-        /*$validated = $request->validated();
-        $weightLog = Weight_log::findOrFail($weightLogId);
-        $weightLog->date = $validated['date'];
-        $weightLog->weight = $validated['weight'];
-        $weightLog->calories = $validated['calories'];
-        $weightLog->exercise_time = $validated['exercise_time'];
-        $weightLog->exercise_content = $validated['exercise_content'];*/
-
-        $weightLog = Weight_log::findOrFail($weightLogId);
+        $weightLog = WeightLog::findOrFail($weightLogId);
         $weightLog->date = $request->input('date');
         $weightLog->weight = $request->input('weight');
         $weightLog->calories = $request->input('calories');
@@ -118,7 +108,18 @@ class Weight_logsController extends Controller
     //体重詳細画面のゴミ箱ボタンを押下して、weight_logsテーブルのデータを削除する
     public function delete(Request $request, $weightLogId)
     {
-        $weightLog = Weight_log::findOrFail($weightLogId);
-        dd($request->all());
+        $weightLog = WeightLog::findOrFail($weightLogId);
+        $weightLog->delete();
+        return redirect('/weight_logs');
+    }
+
+    //管理画面から検索ボタンを押下して、選択した期間内のデータを検索
+    public function search(Request $request)
+
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $weightLogs = WeightLog::whereBetween('date', [$startDate, $endDate])->get();
+        return view ('admin',['weightLogs' => $weightLogs,]);
     }
 }
