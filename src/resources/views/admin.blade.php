@@ -42,40 +42,44 @@
             <span id="closeModal" class="close">&times;</span>
             <h2>Weight Logを追加</h2>
             <div class="register-form__inner">
-                <form class="register-form__form" action="/weight_logs/create" method="post">
+                <form class="register-form__form" action="/weight_logs" method="post">
                     @csrf
                     <div class="log-form__group">
                         <label class="log-form__label" for="date">日付</label>
+                        <span class="form__label--required">必須</span>
                         <input class="log-form__input" type="date" name="date" id="date">
                         <p class="log-form__error-message">
-                            @error('name')
+                            @error('date')
                             {{ $message }}
                             @enderror
                         </p>
                     </div>
                     <div class="log-form__group">
                         <label class="log-form__label" for="weight">体重</label>
+                        <span class="form__label--required">必須</span>
                         <input class="log-form__input" type="integer" name="weight" id="weight">kg
                         <p class="log-form__error-message">
-                            @error('name')
+                            @error('weight')
                             {{ $message }}
                             @enderror
                         </p>
                     </div>
                     <div class="log-form__group">
                         <label class="log-form__label" for="calories">摂取カロリー</label>
+                        <span class="form__label--required">必須</span>
                         <input class="log-form__input" type="integer" name="calories" id="calories">cal
                         <p class="log-form__error-message">
-                            @error('name')
+                            @error('calories')
                             {{ $message }}
                             @enderror
                         </p>
                     </div>
                     <div class="log-form__group">
                         <label class="log-form__label" for="exercise_time">運動時間</label>
-                        <input class="log-form__input" type="integer" name="exercise_time" id="exercise_time">
+                        <span class="form__label--required">必須</span>
+                        <input class="log-form__input" type="time" name="exercise_time" id="exercise_time">
                         <p class="log-form__error-message">
-                            @error('name')
+                            @error('exercise_time')
                             {{ $message }}
                             @enderror
                         </p>
@@ -84,17 +88,19 @@
                         <label class="log-form__label" for="exercise_content">運動内容</label>
                         <input class="log-form__input" type="text" name="exercise_content" id="exercise_content">
                         <p class="log-form__error-message">
-                            @error('name')
+                            @error('exercise_content')
                             {{ $message }}
                             @enderror
                         </p>
                     </div>
-                    <a href="/weight_logs">戻る</a>
-                    <input class="log-form__btn btn" type="submit" value="更新">
+                    <button class="btn btn-secondary" type="button" onclick="window.location.href='/weight_logs'">戻る</button>
+                    <input class=" log-form__btn btn" type="submit" value="更新">
                 </form>
             </div>
         </div>
     </div>
+
+
 
     <style>
         /* モーダルのスタイル */
@@ -132,7 +138,7 @@
             modal.style.display = "block";
 
             // ルーティングでデータを取得して表示する（Ajax使用）
-            fetch('/weight_logs/create') // データを取得するURL
+            fetch('/weight_logs') // データを取得するURL
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById("modal-body").innerText = data.message;
@@ -150,6 +156,7 @@
                 document.getElementById("modal").style.display = "none";
             }
         }
+        
     </script>
 
     {{$weight_logs->links()}}

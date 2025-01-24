@@ -25,8 +25,8 @@ class WeightRequest extends FormRequest
     {
         return [
             //バリデーションのルール
-            'target_weight' => ['required', 'numeric', 'regex:/^\d{1,4}(\.\d{1})?$/'],
-            'weight' => ['sometimes', 'required', 'numeric', 'regex:/^\d{1,4}(\.\d{1})?$/'],
+            'target_weight' => ['required', 'digits_between:1,4', 'regex:/^\d+(\.\d{1})?$/'],
+            'weight' => ['sometimes', 'required', 'digits_between:1,4', 'regex:/^\d+(\.\d{1})?$/'],
         ];
     }
 
@@ -35,10 +35,10 @@ class WeightRequest extends FormRequest
     {
         return [
             'target_weight.required' => '目標の体重を入力してください',
-            'target_weight.numeric' => '4桁までの数字で入力してください',
+            'target_weight.digits_between' => '4桁までの数字で入力してください',
             'target_weight.regex' => '小数点は1桁で入力してください',
             'weight.required' => '現在の体重を入力してください',
-            'weight.numeric' => '4桁までの数字で入力してください',
+            'weight.digits_between' => '4桁までの数字で入力してください',
             'weight.regex' => '小数点は1桁で入力してください',
 
         ];
