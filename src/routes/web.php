@@ -56,8 +56,8 @@ Route::post('/weight_logs/{weightLogId}/delete', [WeightLogsController::class, '
     ->where('weightLogId', '[0-9]+')
     ->name('weight_logs.delete');
 
-//管理画面から検索ボタンを押下して、選択した期間内のデータを検索
-Route::get('/weight_logs/search', [WeightLogsController::class, 'search']);
+//管理画面から検索ボタンを押下して、選択した期間内のデータを検索し、検索ボタン、検索件数、検索期間を表示
+Route::get('/weight_logs/search', [WeightLogsController::class, 'admin']);
 
 
 
