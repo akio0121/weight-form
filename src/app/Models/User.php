@@ -46,12 +46,12 @@ class User extends Authenticatable
     //weight_targetテーブルとのhasOne結合
     public function Weight_Target()
     {
-        return $this->hasOne(Weight_Target::class);
+        return $this->hasOne(WeightTarget::class);
     }
 
     //weight_logsテーブルとのhasMany結合
     public function Weight_Logs()
     {
-        return $this->hasMany(Weight_Target::class);
+        return $this->hasMany(WeightLog::class);
     }
 }

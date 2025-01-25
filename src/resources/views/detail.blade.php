@@ -10,8 +10,10 @@
 
 <body>
     <button class="btn btn-primary" onclick="location.href='/weight_logs/goal_setting'">目標体重設定</button>
-    <button class="btn btn-primary" onclick="location.href='/login'">ログアウト</button>
-
+    <form action="/logout" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger">ログアウト</button>
+    </form>
     <h1>Weight Log</h1>
 
     <form class="detail-form__form" action="/weight_logs/{{ $weightLog->id }}/update" method="post">

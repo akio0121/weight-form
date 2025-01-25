@@ -59,6 +59,9 @@ Route::post('/weight_logs/{weightLogId}/delete', [WeightLogsController::class, '
 //管理画面から検索ボタンを押下して、選択した期間内のデータを検索し、検索ボタン、検索件数、検索期間を表示
 Route::get('/weight_logs/search', [WeightLogsController::class, 'admin']);
 
+//ログアウトボタンを押してログアウトする
+Route::post('/logout', [UserController::class, 'logout']);
+
 
 
 Route::get('/', function () {

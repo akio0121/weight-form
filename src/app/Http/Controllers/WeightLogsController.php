@@ -23,49 +23,32 @@ class WeightLogsController extends Controller
         //管理画面上部に最新体重を表示
         $latestWeightLog = WeightLog::where('user_id', $user->id)->orderBy('date', 'desc')->first();
         $query = WeightLog::query();
-        $isSearch = false;
         // 日付で検索する場合、条件に合うデータを一覧に表示
         if ($request->has('start_date') && $request->has('end_date')) {
             $query->where('user_id', $user->id)->whereBetween('date', [$request->start_date, $request->end_date]);
             $weight_logs = $query->Paginate(8);
-            $isSearch = true;
+            session(['isSearch' => true, 'start_date' => $request->start_date, 'end_date' => $request->end_date]);
             return view('admin', [
                 'weight_target' => $weight_target,
                 'latestWeightLog' => $latestWeightLog,
                 'weight_logs' => $weight_logs,
-                //検索に使用した日付をビューに渡す
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                //検索フラグをビューに渡す
-                'isSearch' => $isSearch,
+                //検索に使用した日付、isSearch(true)をセッションに渡す
+                'start_date' => session('start_date', ''),
+                'end_date' => session('end_date', ''),
+                'isSearch' => session('isSearch', true),
             ]);
         }
         //日付で検索しない場合、全データを一覧に表示
         $weight_logs = WeightLog::where('user_id', $user->id)->Paginate(8);
-        return view('admin', compact('weight_target', 'weight_logs', 'latestWeightLog'));
+        session(['isSearch' => false]);
+        return view('admin', [
+            'weight_target' => $weight_target,
+            'latestWeightLog' => $latestWeightLog,
+            'weight_logs' => $weight_logs,
+            //isSearch(false)をセッションに渡す
+            'isSearch' => session('isSearch', false),
+        ]);
     }
-
-
-    /*管理画面に体重一覧を表示
-        $user = Auth::user();
-        //管理画面上部に目標体重を表示
-        $weight_target = WeightTarget::where('user_id', $user->id)->first();
-        //管理画面上部に最新体重を表示
-        $latestWeightLog = WeightLog::where('user_id', $user->id)->orderBy('date', 'desc')->first();
-        $weight_logs = WeightLog::where('user_id', $user->id)->Paginate(8);
-        return view('admin', compact('weight_target', 'weight_logs', 'latestWeightLog'));*/
-
-
-    //管理画面から検索ボタンを押下して、選択した期間内のデータを検索
-    /*public function search(Request $request)
-    {
-        $user = Auth::user();
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
-        $weight_logs = WeightLog::where('user_id', $user->id)->whereBetween('date', [$startDate, $endDate])->get();
-        dd($weight_logs);
-        return view('admin', ['weight_logs' => $weight_logs,]);
-    }*/
 
     //目標設定画面(goal_setting)を表示
     public function goal_setting()

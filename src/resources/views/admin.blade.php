@@ -60,23 +60,26 @@
     <p>目標まで：{{ $weight_target->target_weight - $latestWeightLog->weight }} kg</p>
     <p>最新体重:{{ $latestWeightLog->weight }} kg</p>
     <button class="btn btn-primary" onclick="location.href='/weight_logs/goal_setting'">目標体重設定</button>
-    <button class="btn btn-primary" onclick="location.href='/login'">ログアウト</button>
+    <form action="/logout" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger">ログアウト</button>
+    </form>
 
     <form action="/weight_logs/search" method="GET">
         <input class="log-form__input" type="date" name="start_date" id="start_date" value="{{ old('start_date', $start_date ?? '') }}">
         ～
         <input class="log-form__input" type="date" name="end_date" id="end_date" value="{{ old('end_date', $end_date ?? '') }}">
         <button type="submit" class="btn btn-primary">検索</button>
-
-        @if ($isSearch)
-        <div>
-            <p>検索結果件数: {{ $weight_logs->total() }}件</p>
-            <form action="/weight_logs" method="GET">
-                <button type="submit">リセット</button>
-            </form>
-        </div>
-        @endif
     </form>
+
+    @if ($isSearch)
+    <div>
+        <p>{{ $start_date }}～{{ $end_date }}の検索結果 {{ $weight_logs->total() }}件</p>
+        <form action="/weight_logs" method="GET">
+            <button type="submit">リセット</button>
+        </form>
+    </div>
+    @endif
 
     <table>
         <tr>

@@ -12,7 +12,10 @@
     <div class="goal-form">
         <h1 class="goal-form__heading content__heading">PiGLy</h1>
         <button class="btn btn-primary" onclick="location.href='/weight_logs/goal_setting'">目標体重設定</button>
-        <button class="btn btn-primary" onclick="location.href='/login'">ログアウト</button>
+        <form action="/logout" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger">ログアウト</button>
+        </form>
 
         <div class="goal-form__inner">
             <form class="goal-form__form" action="/weight_logs/goal_setting" method="post">
