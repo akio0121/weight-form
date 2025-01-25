@@ -23,7 +23,9 @@ class WeightLogsController extends Controller
         $weight_logs = WeightLog::where('user_id', $user->id)->Paginate(8);
         //管理画面上部に目標体重を表示
         $weight_target = WeightTarget::where('user_id', $user->id)->first();
-        return view('admin', compact('weight_target', 'weight_logs'));
+        //管理画面上部に最新体重を表示
+        $latestWeightLog = WeightLog::where('user_id', $user->id)->orderBy('date', 'desc')->first();
+        return view('admin', compact('weight_target', 'weight_logs', 'latestWeightLog'));
     }
 
     //目標設定画面(goal_setting)を表示
@@ -120,6 +122,6 @@ class WeightLogsController extends Controller
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $weightLogs = WeightLog::whereBetween('date', [$startDate, $endDate])->get();
-        return view ('admin',['weightLogs' => $weightLogs,]);
+        return view('admin', ['weightLogs' => $weightLogs,]);
     }
 }

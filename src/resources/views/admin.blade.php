@@ -57,6 +57,8 @@
 
 <body>
     <p>目標体重: {{ $weight_target->target_weight }} kg</p>
+    <p>目標まで：{{ $weight_target->target_weight - $latestWeightLog->weight }} kg</p>
+    <p>最新体重:{{ $latestWeightLog->weight }} kg</p>
     <button class="btn btn-primary" onclick="location.href='/weight_logs/goal_setting'">目標体重設定</button>
     <button class="btn btn-primary" onclick="location.href='/login'">ログアウト</button>
 
