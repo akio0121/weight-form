@@ -117,7 +117,7 @@ class WeightLogsController extends Controller
     }
 
     //体重詳細画面の更新ボタンを押下して、weight_logsテーブルのデータを更新する
-    public function update(LogRequest $request, $weightLogId)
+    public function update(Request $request, $weightLogId)
     {
         $weightLog = WeightLog::findOrFail($weightLogId);
         $weightLog->date = $request->input('date');
