@@ -52,6 +52,11 @@
         .close-btn:hover {
             text-decoration: underline;
         }
+
+        /* ホバー時の行強調表示 */
+        tr:hover {
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
 
@@ -117,7 +122,7 @@
                 <div class="log-form__group">
                     <label class="log-form__label" for="date">日付</label>
                     <span class="form__label--required">必須</span>
-                    <input class="log-form__input" type="date" name="date" id="date">
+                    <input class="log-form__input" type="date" name="date" id="date" value="{{ date('Y-m-d') }}">
                     <p class="log-form__error-message">
                         @error('date')
                         {{ $message }}
@@ -164,7 +169,7 @@
                     </p>
                 </div>
                 <button class="btn btn-secondary" type="button" onclick="window.location.href='/weight_logs'">戻る</button>
-                <input class=" log-form__btn btn" type="submit" value="更新">
+                <input class=" log-form__btn btn" type="submit" value="登録">
             </form>
         </div>
     </div>

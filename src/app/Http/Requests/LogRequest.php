@@ -26,7 +26,7 @@ class LogRequest extends FormRequest
         return [
             //バリデーションのルール
             'date' => ['required', 'date'],
-            'weight' => ['required', 'numeric', 'digits_between:1,4', 'regex:/^\d+(\.\d{1})?$/'],
+            'weight' => ['required', 'numeric', 'max:9999', 'regex:/^\d+(\.\d{1})?$/'],
             'calories' => ['required', 'numeric'],
             'exercise_time' => 'required',
             'exercise_content' => 'max:120',
@@ -40,7 +40,7 @@ class LogRequest extends FormRequest
             'date.required' => '日付を入力してください',
             'weight.required' => '体重を入力してください',
             'weight.numeric' => '数字で入力してください',
-            'weight.digits_between' => '4桁までの数字で入力してください',
+            'weight.max' => '4桁までの数字で入力してください',
             'weight.regex' => '小数点は1桁で入力してください',
             'calories.required' => '摂取カロリーを入力してください',
             'calories.numeric' => '数字で入力してください',
