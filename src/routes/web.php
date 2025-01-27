@@ -14,7 +14,7 @@ use App\Http\Middleware\StoreUserId;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//会員登録画面を表示するために、UserControllerのindexメソッドを実行
+//会員登録画面を表示するために、UserControllerのstep1メソッドを実行
 Route::get('/register/step1', [UserController::class, 'step1']);
 
 //会員登録画面(step1)で氏名、メールアドレス、パスワードを登録

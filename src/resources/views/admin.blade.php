@@ -95,16 +95,17 @@
         </tr>
         @foreach ($weight_logs as $weight_log)
         <tr>
-            <td>{{$weight_log->date}}</td>
+            <td>{{ $weight_log->date ? \Carbon\Carbon::parse($weight_log->date)->format('Y/m/d') : '' }}</td>
             <td>{{$weight_log->weight}}kg</td>
             <td>{{$weight_log->calories}}cal</td>
-            <td>{{$weight_log->exercise_time}}</td>
+            <td>{{ $weight_log->exercise_time ? \Carbon\Carbon::parse($weight_log->exercise_time)->format('H:i') : '' }}</td>
             <td><a href="/weight_logs/{{$weight_log->id}}">
                     <img src="{{ asset('storage/edit-icon.png') }}" alt="" style="width: 24px; height: 24px;"></a>
             </td>
         </tr>
         @endforeach
     </table>
+
 
     <div class="container">
         <!-- モーダルを開くトリガー -->
@@ -113,6 +114,8 @@
 
         <!-- モーダルの背景 -->
         <div class="modal-overlay"></div>
+
+
 
         <!-- モーダルウィンドウ -->
         <div class="modal">

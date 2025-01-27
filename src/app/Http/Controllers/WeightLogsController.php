@@ -51,7 +51,6 @@ class WeightLogsController extends Controller
     }
 
     //目標設定画面(goal_setting)を表示
-    //public function goal_setting()
     public function goal_setting()
     {
         return view('goal_setting');
