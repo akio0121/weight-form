@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\WeightRequest;
 use App\Http\Requests\LogRequest;
+use App\Http\Requests\UserRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 

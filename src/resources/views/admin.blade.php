@@ -110,12 +110,11 @@
     <div class="container">
         <!-- モーダルを開くトリガー -->
         <label for="modalToggle" class="btn btn-primary" style="cursor: pointer;">データ追加</label>
-        <input type="checkbox" id="modalToggle" style="display: none;">
+        <input type="checkbox" id="modalToggle" style="display: none;" @if ($errors->any()) checked @endif>
+
 
         <!-- モーダルの背景 -->
         <div class="modal-overlay"></div>
-
-
 
         <!-- モーダルウィンドウ -->
         <div class="modal">
@@ -164,7 +163,7 @@
                 </div>
                 <div class="log-form__group">
                     <label class="log-form__label" for="exercise_content">運動内容</label>
-                    <input class="log-form__input" type="text" name="exercise_content" id="exercise_content">
+                    <textarea class="log-form__input2" type="text" name="exercise_content" id="exercise_content"></textarea>
                     <p class="log-form__error-message">
                         @error('exercise_content')
                         {{ $message }}
