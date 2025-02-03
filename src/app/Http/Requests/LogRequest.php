@@ -38,6 +38,7 @@ class LogRequest extends FormRequest
     {
         return [
             'date.required' => '日付を入力してください',
+            'date.date' => '日付を入力してください',
             'weight.required' => '体重を入力してください',
             'weight.numeric' => '数字で入力してください',
             'weight.max' => '4桁までの数字で入力してください',

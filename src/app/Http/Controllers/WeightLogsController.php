@@ -25,15 +25,32 @@ class WeightLogsController extends Controller
         $latestWeightLog = WeightLog::where('user_id', $user->id)->orderBy('date', 'desc')->first();
         $query = WeightLog::query();
         // 日付で検索する場合、条件に合うデータを一覧に表示
-        if ($request->has('start_date') && $request->has('end_date')) {
-            $query->where('user_id', $user->id)->whereBetween('date', [$request->start_date, $request->end_date]);
-            $weight_logs = $query->Paginate(8);
-            session(['isSearch' => true, 'start_date' => $request->start_date, 'end_date' => $request->end_date]);
+        if ($request->has('start_date') || $request->has('end_date')) {
+            $query->where('user_id', $user->id);
+            //開始日付が空白だった場合
+            if ($request->filled('start_date')) {
+                $query->where('date', '>=', $request->start_date);
+            }
+            //終了日付が空白だった場合
+            if ($request->filled('end_date')) {
+                $query->where('date', '<=', $request->end_date);
+            }
+
+            $weight_logs = $query->paginate(8)->appends([
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date
+            ]);
+
+            session([
+                'isSearch' => true,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date
+            ]);
+
             return view('admin', [
                 'weight_target' => $weight_target,
                 'latestWeightLog' => $latestWeightLog,
                 'weight_logs' => $weight_logs,
-                //検索に使用した日付、isSearch(true)をセッションに渡す
                 'start_date' => session('start_date', ''),
                 'end_date' => session('end_date', ''),
                 'isSearch' => session('isSearch', true),
@@ -118,7 +135,7 @@ class WeightLogsController extends Controller
     }
 
     //体重詳細画面の更新ボタンを押下して、weight_logsテーブルのデータを更新する
-    public function update(Request $request, $weightLogId)
+    public function update(LogRequest $request, $weightLogId)
     {
         $weightLog = WeightLog::findOrFail($weightLogId);
         $weightLog->date = $request->input('date');

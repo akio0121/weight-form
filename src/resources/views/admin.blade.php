@@ -176,7 +176,7 @@
         </div>
     </div>
 
-    {{$weight_logs->links()}}
+    {{ $weight_logs->withQueryString()->links() }}
 </body>
 
 </html>
