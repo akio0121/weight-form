@@ -3,7 +3,7 @@
 ## 環境構築
 
 #### Docker ビルド
-1. `$ git@github.com:akio0121/weight-form.git`
+1. `$ git clone git@github.com:akio0121/weight-form.git`
 2. DockerDesktopアプリを起動する。
 3. `$ docker-compose up -d --build`
 
@@ -18,6 +18,13 @@ $ php artisan key:generate
 $ php artisan migrate
 $ php artisan db:seed
 ```
+
+#### ダミーデータ
+
+| 名前  | メールアドレス | パスワード |
+| ----- | -------------- | ---------- |
+| 山田太郎 | aaa@bbb.com    | aaa   |
+
 ## 使用技術（実行環境）
 - PHP 7.4.9
 - MySQL 8.0.26
@@ -28,5 +35,5 @@ $ php artisan db:seed
 
 
 ### URL
-- 開発環境 http://localhost/
+- 開発環境 http://localhost/login
 - phpMyAdmin http://localhost:8080/
