@@ -18,7 +18,7 @@
                 @csrf
                 <div class="step2-form__group">
                     <label class="step2-form__label" for="weight">現在の体重</label>
-                    <input class="step2-form__input" type="integer" name="weight" id="weight" placeholder="現在の体重を入力">kg
+                    <input class="step2-form__input" type="integer" name="weight" id="weight" placeholder="現在の体重を入力"> kg
                     <p class="step2-form__error-message">
                         @error('weight')
                         {{ $message }}
@@ -27,7 +27,7 @@
                 </div>
                 <div class="step2-form__group">
                     <label class="step2-form__label" for="target_weight">目標の体重</label>
-                    <input class="step2-form__input" type="integer" name="target_weight" id="target_weight" placeholder="目標の体重を入力">kg
+                    <input class="step2-form__input" type="integer" name="target_weight" id="target_weight" placeholder="目標の体重を入力"> kg
                     <p class="step2-form__error-message">
                         @error('target_weight')
                         {{ $message }}
