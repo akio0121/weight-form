@@ -3,7 +3,7 @@ svg.w-5.h-5 {
     height: 30px;
 }
 
-
+/*エラーメッセージ*/
 .log-form__error-message {
     color: red;
 }
@@ -15,10 +15,155 @@ svg.w-5.h-5 {
     box-sizing: border-box;
 }
 
+/*入力必須項目*/
 .form__label--required {
     margin-left: 5px;
     padding: 4px 6px;
     border-radius: 3px;
     background: #f90303;
     color: #f8f1f1;
+}
+
+/* サマリー全体 */
+.summary-cards {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+/* 各カード */
+.summary-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* タイトル */
+.summary-title {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* 数値 */
+.summary-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* サマリー背景（青） */
+.summary-area {
+    background-color: #93bff2;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+/* 各カード（白） */
+.summary-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 画面全体の青背景 */
+.admin-page {
+    min-height: calc(100vh - 80px);
+    /* ヘッダー分 */
+    background-color: #93bff2;
+    padding: 32px;
+}
+
+/* 白いカード共通 */
+.admin-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+/* テーブル全体 */
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: #fff;
+}
+
+/* データ行 */
+.log-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+
+/* 最終行の下線を消す */
+.log-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ホバー */
+.log-table tr:hover {
+    background-color: #f9fafb;
+}
+
+/* 見出し・データをすべて中央寄せ */
+.log-table th,
+.log-table td {
+    text-align: center;
+}
+
+/* ページネーション中央寄せ */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+/* 検索フォーム全体 */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* 日付入力 */
+.search-input {
+    height: 48px;
+    padding: 0 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* ～ */
+.search-separator {
+    font-size: 18px;
+}
+
+/* 検索ボタン、データ追加ボタン */
+.search-btn,
+.add-btn{
+    height: 48px;
+    padding: 0 24px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+/* 検索結果表示 */
+.search-result {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* リセットボタン */
+.reset-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
 }

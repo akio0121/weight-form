@@ -1,0 +1,68 @@
+/* 背景 */
+.detail-page {
+    min-height: calc(100vh - 80px);
+    /* ヘッダー分 */
+    background-color: #93bff2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* カード */
+.detail-card {
+    background: #fff;
+    padding: 32px 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトル */
+.detail-title {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* フォーム */
+.detail-form__group {
+    margin-bottom: 16px;
+}
+
+.detail-form__group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.detail-form__group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* エラーメッセージ */
+.detail-form__error-message {
+    color: red;
+    font-size: 12px;
+}
+
+/* ボタン */
+.detail-form__buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.detail-form__buttons button,
+.detail-form__buttons input {
+    flex: 1;
+    padding: 12px 0;
+}
+
+/* 削除ボタン */
+.detail-delete {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}

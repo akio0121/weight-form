@@ -1,3 +1,63 @@
+/*エラーメッセージ*/
 .goal-form__error-message {
     color: red;
+}
+
+/* このページ全体の背景 */
+main {
+    min-height: calc(100vh - 80px);
+    /* ヘッダー高さ分 */
+    background-color: #93bff2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 白いカード */
+.goal-form__inner {
+    background: #fff;
+    padding: 32px 40px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 100%;
+}
+.goal-form__label {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    /* 入力欄との間 */
+}
+
+.goal-form__buttons {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.goal-form__buttons button,
+.goal-form__buttons input {
+    flex: 1;
+    /* 横幅を均等に広げる */
+    padding: 12px 0;
+    font-size: 16px;
+}
+/* 入力欄＋kg */
+.goal-form__input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    /* カード幅いっぱい */
+    margin-bottom: 24px;
+}
+
+/* 入力欄本体 */
+.goal-form__input {
+    flex: 1;
+    /* 残り幅をすべて使う */
+    padding: 10px;
+    font-size: 16px;
 }
