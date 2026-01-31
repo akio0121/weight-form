@@ -35,10 +35,14 @@
     font-weight: bold;
 }
 
-.detail-form__group input {
+/* 入力欄 共通 */
+.detail-form__group input,
+.detail-form__group textarea {
     width: 100%;
-    padding: 8px;
-    font-size: 14px;
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
 }
 
 /* エラーメッセージ */
@@ -60,9 +64,20 @@
     padding: 12px 0;
 }
 
+.detail-form__group textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: vertical;
+    /* 縦だけサイズ変更可 */
+}
+
 /* 削除ボタン */
 .detail-delete {
     display: flex;
     justify-content: flex-end;
     margin-top: 16px;
 }
+

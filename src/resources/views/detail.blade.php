@@ -42,8 +42,10 @@
 
             <div class="detail-form__group">
                 <label for="exercise_content">運動内容</label>
-                <input type="text" name="exercise_content" id="exercise_content"
-                    value="{{ $weightLog->exercise_content }}">
+                <textarea
+                    name="exercise_content"
+                    id="exercise_content"
+                    rows="4">{{ $weightLog->exercise_content }}</textarea>
             </div>
 
             <div class="detail-form__buttons">

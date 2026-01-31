@@ -117,11 +117,12 @@
                 <!-- モーダルウィンドウ -->
                 <div class="modal">
                     <h2>Weight Logを追加</h2>
-                    <form class="register-form__form" action="/weight_logs" method="post">
+                    <form class="log-form__form" action="/weight_logs" method="post">
                         @csrf
                         <div class="log-form__group">
-                            <label class="log-form__label" for="date">日付</label>
-                            <span class="form__label--required">必須</span>
+                            <labe class="log-form__label" for="date">日付
+                                <span class="form__label--required">必須</span>
+                            </labe>
                             <input class="log-form__input" type="date" name="date" id="date" value="{{ date('Y-m-d') }}">
                             <p class="log-form__error-message">
                                 @error('date')
@@ -130,9 +131,13 @@
                             </p>
                         </div>
                         <div class="log-form__group">
-                            <label class="log-form__label" for="weight">体重</label>
-                            <span class="form__label--required">必須</span>
-                            <input class="log-form__input" type="integer" name="weight" id="weight">kg
+                            <label class="log-form__label" for="weight">体重
+                                <span class="form__label--required">必須</span>
+                            </label>
+                            <div class="input-with-unit">
+                                <input class="log-form__input" type="integer" name="weight" id="weight">
+                                <span class="unit">kg</span>
+                            </div>
                             <p class="log-form__error-message">
                                 @error('weight')
                                 {{ $message }}
@@ -140,9 +145,13 @@
                             </p>
                         </div>
                         <div class="log-form__group">
-                            <label class="log-form__label" for="calories">摂取カロリー</label>
-                            <span class="form__label--required">必須</span>
-                            <input class="log-form__input" type="integer" name="calories" id="calories">cal
+                            <label class="log-form__label" for="calories">摂取カロリー
+                                <span class="form__label--required">必須</span>
+                            </label>
+                            <div class="input-with-unit">
+                                <input class="log-form__input" type="integer" name="calories" id="calories">
+                                <span class="unit">cal</span>
+                            </div>
                             <p class="log-form__error-message">
                                 @error('calories')
                                 {{ $message }}
@@ -150,8 +159,9 @@
                             </p>
                         </div>
                         <div class="log-form__group">
-                            <label class="log-form__label" for="exercise_time">運動時間</label>
-                            <span class="form__label--required">必須</span>
+                            <label class="log-form__label" for="exercise_time">運動時間
+                                <span class="form__label--required">必須</span>
+                            </label>
                             <input class="log-form__input" type="time" name="exercise_time" id="exercise_time">
                             <p class="log-form__error-message">
                                 @error('exercise_time')
@@ -168,8 +178,10 @@
                                 @enderror
                             </p>
                         </div>
-                        <button class="btn btn-secondary" type="button" onclick="window.location.href='/weight_logs'">戻る</button>
-                        <input class=" log-form__btn btn" type="submit" value="登録">
+                        <div class="form-actions">
+                            <button class="btn btn-secondary" type="button" onclick="window.location.href='/weight_logs'">戻る</button>
+                            <input class=" log-form__btn btn" type="submit" value="登録">
+                        </div>
                     </form>
                 </div>
             </div>
